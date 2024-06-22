@@ -1,0 +1,37 @@
+# Golang Gin-Gorm-Postgres API
+
+This project is a RESTful API built with Golang, using the Gin web framework and Gorm ORM with a PostgreSQL database. It includes a structured setup with modular code organization for controllers, routes, and database migrations. The API allows clients to interact with `Program` entities, providing CRUD operations.
+
+## Features
+
+- **Modular Controllers**: The `PostController` encapsulates the logic for handling requests related to the `Program` entity.
+- **CRUD Operations**: Supports creating, reading, updating, and deleting `Program` records.
+- **Pagination**: Includes pagination support for listing `Program` records.
+- **Error Handling**: Provides detailed error responses for various failure scenarios, such as validation errors and database conflicts.
+- **Structured Responses**: Standardizes API responses with status codes and messages.
+
+## Endpoints
+
+The following are some of the endpoints provided by the `PostController` for operations on `Program` entities:
+
+- `POST /api/programs`: Allows the creation of a new `Program`.
+- `GET /api/programs`: Retrieves a paginated list of `Program` records.
+- `GET /api/programs/:id`: Fetches a single `Program` record by its ID.
+- `PUT /api/programs/:id`: Updates an existing `Program` record.
+- `DELETE /api/programs/:id`: Deletes a `Program` record.
+
+## Models
+
+The `Program` model defines the structure for `Program` entities, including fields such as `Id`, `Name`, `NameEn`, `IsPublic`, and `ProjectID`.
+
+## Setup
+
+The project is containerized and can be set up locally by running:
+
+```sh
+docker-compose up
+```
+### Step for check app
+
+1. http://localhost:8080/api/healthchecker - the link will show if the container and the group are working for the api
+2. https://api.postman.com/collections/14775136-1701cf20-3c55-408f-b10a-a8f4e921ad47?access_key=PMAT-01J0ZYDDTM2VY5BJP2Z21BKJYW - postman collection for testing(import this link in postman)
