@@ -15,14 +15,13 @@ This project is a RESTful API built with Golang, using the Gin web framework and
 The following are some of the endpoints provided by the `PostController` for operations on `Program` entities:
 
 - `POST /api/programs`: Allows the creation of a new `Program`.
-
+- `GET /api/programs`: Retrieves a paginated list of `Program` records.
 ```
          ----------------- just for exemple -----------------
-- `GET /api/programs`: Retrieves a paginated list of `Program` records.
 - `GET /api/programs/:id`: Fetches a single `Program` record by its ID.
 - `PUT /api/programs/:id`: Updates an existing `Program` record.
 - `DELETE /api/programs/:id`: Deletes a `Program` record.
-       ----------------------------------------------------
+        ----------------------------------------------------
 ```
 
 ## Models
