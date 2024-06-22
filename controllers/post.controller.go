@@ -25,18 +25,20 @@ func (pc *PostController) CreateProgram(ctx *gin.Context) {
 		return
 	}
 
-	var newPost models.Program
+	var programs []models.Program
 
 	for _, program := range payload.Items {
-		newPost = models.Program{
+		newProgram := models.Program{
 			Id:        program.Id,
 			Name:      program.Name,
 			NameEn:    program.NameEn,
 			IsPublic:  program.IsPublic,
 			ProjectID: program.ProjectID,
 		}
+		programs = append(programs, newProgram)
 	}
-	result := pc.DB.Create(&newPost)
+
+	result := pc.DB.CreateInBatches(programs, 100) // в идеале кол-во бачей передавать откуда ни будь аргументом
 	if result.Error != nil {
 		if strings.Contains(result.Error.Error(), "duplicate key") {
 			ctx.JSON(http.StatusConflict, gin.H{"status": "fail", "message": "Post with that title already exists"})
@@ -52,8 +54,7 @@ func (pc *PostController) CreateProgram(ctx *gin.Context) {
 func (pc *PostController) UpdateProgram(ctx *gin.Context) {
 }
 
-func (pc *PostController) FindProgramById(ctx *gin.Context) {
-}
+func (pc *PostController) FindProgramById(ctx *gin.Context) {}
 
 func (pc *PostController) FindProgram(ctx *gin.Context) {
 	var page = ctx.DefaultQuery("page", "1")
