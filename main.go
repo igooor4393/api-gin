@@ -1,16 +1,16 @@
 package main
 
 import (
+	"api-gin/migrate"
 	"github.com/gin-contrib/pprof"
-	"github.com/wpcodevo/golang-gorm-postgres/migrate"
 	"log"
 	"net/http"
 
+	"api-gin/controllers"
+	"api-gin/initializers"
+	"api-gin/routes"
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
-	"github.com/wpcodevo/golang-gorm-postgres/controllers"
-	"github.com/wpcodevo/golang-gorm-postgres/initializers"
-	"github.com/wpcodevo/golang-gorm-postgres/routes"
 )
 
 var (
@@ -51,13 +51,17 @@ func main() {
 	server.Use(cors.New(corsConfig))
 
 	router := server.Group("/api")
-	// http://localhost:8000/api/healthchecker
+	// http://localhost:8080/api/healthchecker
 	router.GET("/healthchecker", func(ctx *gin.Context) {
 		message := "Welcome to Golang with Gorm and Postgres"
 		ctx.JSON(http.StatusOK, gin.H{"status": "success", "message": message})
 	})
 
-	// http://localhost:8000/api/debug/pprof/
+	// ------ в Gin очень просто подлючаются миддлвары ------
+	//swaggerURL := ginSwagger.URL("http://localhost:" + config.ServerPort + "/swagger/doc.json")
+	//router.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler, swaggerURL))
+
+	// http://localhost:8080/api/debug/pprof/
 	pprof.Register(router)
 
 	PostRouteController.PostRoute(router)

@@ -1,9 +1,9 @@
 package migrate
 
 import (
+	"api-gin/initializers"
+	"api-gin/models"
 	"fmt"
-	"github.com/wpcodevo/golang-gorm-postgres/initializers"
-	"github.com/wpcodevo/golang-gorm-postgres/models"
 	"log"
 )
 

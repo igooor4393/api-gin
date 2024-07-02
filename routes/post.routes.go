@@ -1,8 +1,8 @@
 package routes
 
 import (
+	"api-gin/controllers"
 	"github.com/gin-gonic/gin"
-	"github.com/wpcodevo/golang-gorm-postgres/controllers"
 )
 
 type PostRouteController struct {
